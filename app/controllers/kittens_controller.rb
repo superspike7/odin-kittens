@@ -16,6 +16,7 @@ class KittensController < ApplicationController
     @kitten= Kitten.find(params[:id])
     @kitten.destroy
 
+    flash[:notice] = "Kitten successfully deleted"
     redirect_to root_path
   end
 
@@ -23,6 +24,7 @@ class KittensController < ApplicationController
     @kitten = Kitten.find(params[:id])
 
     if @kitten.update(kitten_params)
+       flash[:notice] = "Kitten successfully edited"
        redirect_to @kitten
     else
         render 'edit', status: :unprocessable_entity
@@ -33,6 +35,7 @@ class KittensController < ApplicationController
   def create
     @kitten = Kitten.new(kitten_params)
     if @kitten.save
+       flash[:notice] = "Kitten successfully created"
       redirect_to root_path
     else
       render 'new', status: :unprocessable_entity

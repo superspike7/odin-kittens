@@ -12,6 +12,9 @@
 
   <body>
   <header> <h1><%= link_to 'home', root_path %></h1> </header>
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
